@@ -26,30 +26,24 @@ export default class SliderPage extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.filters}>
-                    <Button
-                            icon={
-                                <Icon
-                                    name="filter-tilt-shift"
-                                    size={30}
-                                    color='#841584'/>
-
-                            }
-                            title="Button with icon component"
-                         onPress={()=> {this.onButtonPress()}}/>
-                    <Icon
+                   <Icon
                         name="filter-tilt-shift"
                         size={30}
                         color='#841584'/>
                     <Icon
-                        name="filter-tilt-shift"
+                        name="filter-frames"
                         size={30}
                         color='#841584'/>
                     <Icon
-                        name="filter-tilt-shift"
+                        name="screen-lock-rotation"
                         size={30}
                         color='#841584'/>
                     <Icon
-                        name="filter-tilt-shift"
+                        name="system-update-alt"
+                        size={30}
+                        color='#841584'/>
+                    <Icon
+                        name="zoom-out-map"
                         size={30}
                         color='#841584'/>
                 </View>
@@ -75,7 +69,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     bottom: {
-        backgroundColor: "#a9a9a9",
+        backgroundColor: "#F7F7F7",
         height: '20%',
         justifyContent: 'center',
         alignItems: 'center',
@@ -87,5 +81,8 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
+    },
+    button: {
+        backgroundColor: "red",
     }
 });
