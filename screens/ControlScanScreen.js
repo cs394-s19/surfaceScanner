@@ -12,7 +12,7 @@ export default class ButtonRoundedExample extends Component {
                         <Text>Control</Text>
                     </Button>
                     <Text>  </Text>
-                    <Button rounded large full onPress={() => navigate('SliderPage')}>
+                    <Button rounded large full onPress={() => navigate('QrcodePage')}>
                         <Text>Scan</Text>
                     </Button>
                 </Container>
