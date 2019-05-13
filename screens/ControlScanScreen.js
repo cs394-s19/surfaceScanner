@@ -8,12 +8,12 @@ export default class ButtonRoundedExample extends Component {
         return (
             <View style={{ flex: 1, position: 'relative', top: 350, alignItems: "center" }}>
                 <Container>
-                    <Button rounded dark large onPress={() => navigate('SliderPage')}>
-                        <Text> Control </Text>
+                    <Button rounded dark large full onPress={() => navigate('SliderPage')}>
+                        <Text>Control</Text>
                     </Button>
                     <Text>  </Text>
-                    <Button rounded large onPress={() => navigate('SliderPage')}>
-                        <Text>   Scan   </Text>
+                    <Button rounded large full onPress={() => navigate('SliderPage')}>
+                        <Text>Scan</Text>
                     </Button>
                 </Container>
 
