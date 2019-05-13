@@ -1,10 +1,12 @@
 import React from 'react';
 import {
     Slider,
-    StyleSheet
+    StyleSheet,
+    Button,
+    Alert
 } from 'react-native';
-import { Container, View } from 'native-base';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { View } from 'native-base';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
 const SliderFunc = ()=> ( <Slider
@@ -16,15 +18,40 @@ const SliderFunc = ()=> ( <Slider
 />);
 
 export default class SliderPage extends React.Component {
+    onButtonPress= () => {
+        Alert.alert('Button has been pressed!');
+    };
+
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.filters}>
+                    <Button
+                            icon={
+                                <Icon
+                                    name="filter-tilt-shift"
+                                    size={30}
+                                    color='#841584'/>
+
+                            }
+                            title="Button with icon component"
+                         onPress={()=> {this.onButtonPress()}}/>
                     <Icon
-                        name="ios-add"
-                        color="#ccc"
-                        size={25}
-                    />
+                        name="filter-tilt-shift"
+                        size={30}
+                        color='#841584'/>
+                    <Icon
+                        name="filter-tilt-shift"
+                        size={30}
+                        color='#841584'/>
+                    <Icon
+                        name="filter-tilt-shift"
+                        size={30}
+                        color='#841584'/>
+                    <Icon
+                        name="filter-tilt-shift"
+                        size={30}
+                        color='#841584'/>
                 </View>
                 <View style={styles.bottom}>
                     <Slider
