@@ -2,12 +2,13 @@ import React from 'react';
 import {
     Slider,
     StyleSheet,
-    Button,
-    Alert
+    Alert,
+    Text
 } from 'react-native';
+import { Button } from 'react-native-elements';
 import { View } from 'native-base';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
+import { Ionicons } from '@expo/vector-icons';
 
 const SliderFunc = ()=> ( <Slider
     style={{width: 200, height: 40}}
@@ -18,36 +19,76 @@ const SliderFunc = ()=> ( <Slider
 />);
 
 export default class SliderPage extends React.Component {
-    onButtonPress= () => {
-        Alert.alert('Button has been pressed!');
+    constructor(props) {
+        super(props);
+        this.state = {
+            setting: "Test"
+        };
+      }
+    onButtonPress= (option) => {
+        this.setState({setting: option})
     };
 
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.filters}>
-                   <Icon
+                <Button
+                    icon={
+                        <Icon
                         name="filter-tilt-shift"
                         size={30}
                         color='#841584'/>
-                    <Icon
+                    }
+                    title=""
+                    onPress={() => this.onButtonPress('option 1')}
+                />
+                <Button
+                    icon={
+                        <Icon
                         name="filter-frames"
                         size={30}
                         color='#841584'/>
-                    <Icon
+                    }
+                    title=""
+                    onPress={() => this.onButtonPress('option 2')}
+                />
+                <Button
+                    icon={
+                        <Icon
                         name="screen-lock-rotation"
                         size={30}
                         color='#841584'/>
-                    <Icon
+                    }
+                    title=""
+                    onPress={() => this.onButtonPress('option 3')}
+                />
+                <Button
+                    icon={
+                        <Icon
                         name="system-update-alt"
                         size={30}
                         color='#841584'/>
-                    <Icon
+                    }
+                    title=""
+                    onPress={() => this.onButtonPress('option 4')}
+                />
+                <Button
+                    icon={
+                        <Icon
                         name="zoom-out-map"
                         size={30}
                         color='#841584'/>
+                    }
+                    title=""
+                    onPress={() => this.onButtonPress('option 5')}
+                />
+
                 </View>
                 <View style={styles.bottom}>
+                    <Text style={{fontWeight: 'bold'}}>
+                        {this.state.setting}
+                    </Text>
                     <Slider
                         style={{width: 200, height: 40}}
                         minimumValue={0}
