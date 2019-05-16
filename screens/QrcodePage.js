@@ -34,18 +34,18 @@ export default class QrcodePage extends React.Component{
 
 
       <View style={{ flex: 1, alignItems: "center" }}>
-        <Container>
-          <QRCode
-            value={this.state.text}
-            size={200}
-            bgColor='purple'
-            fgColor='white'/>
+  <Container>
+    <QRCode
+    value={this.state.text}
+    size={200}
+    bgColor='black'
+    fgColor='white'/>
 
-        </Container>
+      </Container>
 
 
       </View>
 
-    );
+  );
   };
 }

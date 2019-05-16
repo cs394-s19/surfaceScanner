@@ -38,50 +38,55 @@ export default class SliderPage extends React.Component {
                         <Icon
                         name="filter-tilt-shift"
                         size={30}
-                        color='#00BCD4'/>
+                        color='#2196F3'/>
                     }
                     title=""
                     onPress={() => this.onButtonPress('Brightness')}
+                    type="clear"
                 />
                 <Button
                     icon={
                         <Icon
                         name="filter-frames"
                         size={30}
-                        color='#00BCD4'/>
+                        color='#2196F3'/>
                     }
                     title=""
                     onPress={() => this.onButtonPress('Contrast')}
+                    type="clear"
                 />
                 <Button
                     icon={
                         <Icon
                         name="screen-lock-rotation"
                         size={30}
-                        color='#00BCD4'/>
+                        color='#2196F3'/>
                     }
                     title=""
-                    onPress={() => this.onButtonPress('White')}
+                    onPress={() => this.onButtonPress('Saturation')}
+                    type="clear"
                 />
                 <Button
                     icon={
                         <Icon
                         name="system-update-alt"
                         size={30}
-                        color='#00BCD4'/>
+                        color='#2196F3'/>
                     }
                     title=""
-                    onPress={() => this.onButtonPress('option 4')}
+                    onPress={() => this.onButtonPress('Exposure')}
+                    type="clear"
                 />
                 <Button
                     icon={
                         <Icon
                         name="zoom-out-map"
                         size={30}
-                        color='#00BCD4'/>
+                        color='#2196F3'/>
                     }
                     title=""
                     onPress={() => this.onButtonPress('Balance')}
+                    type="clear"
                 />
 
                 </View>
@@ -116,14 +121,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     filters: {
-        backgroundColor: "#00BCD4",
+        backgroundColor: "#B2EBF2",
         alignItems: 'center',
         height: '10%',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-    },
-    button: {
-        backgroundColor: "red",
     }
 });
