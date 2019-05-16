@@ -22,7 +22,7 @@ export default class SliderPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            setting: "Test"
+            setting: "Brightness"
         };
       }
     onButtonPress= (option) => {
@@ -38,37 +38,37 @@ export default class SliderPage extends React.Component {
                         <Icon
                         name="filter-tilt-shift"
                         size={30}
-                        color='#841584'/>
+                        color='#00BCD4'/>
                     }
                     title=""
-                    onPress={() => this.onButtonPress('option 1')}
+                    onPress={() => this.onButtonPress('Brightness')}
                 />
                 <Button
                     icon={
                         <Icon
                         name="filter-frames"
                         size={30}
-                        color='#841584'/>
+                        color='#00BCD4'/>
                     }
                     title=""
-                    onPress={() => this.onButtonPress('option 2')}
+                    onPress={() => this.onButtonPress('Contrast')}
                 />
                 <Button
                     icon={
                         <Icon
                         name="screen-lock-rotation"
                         size={30}
-                        color='#841584'/>
+                        color='#00BCD4'/>
                     }
                     title=""
-                    onPress={() => this.onButtonPress('option 3')}
+                    onPress={() => this.onButtonPress('White')}
                 />
                 <Button
                     icon={
                         <Icon
                         name="system-update-alt"
                         size={30}
-                        color='#841584'/>
+                        color='#00BCD4'/>
                     }
                     title=""
                     onPress={() => this.onButtonPress('option 4')}
@@ -78,10 +78,10 @@ export default class SliderPage extends React.Component {
                         <Icon
                         name="zoom-out-map"
                         size={30}
-                        color='#841584'/>
+                        color='#00BCD4'/>
                     }
                     title=""
-                    onPress={() => this.onButtonPress('option 5')}
+                    onPress={() => this.onButtonPress('Balance')}
                 />
 
                 </View>
@@ -93,7 +93,7 @@ export default class SliderPage extends React.Component {
                         style={{width: 200, height: 40}}
                         minimumValue={0}
                         maximumValue={1}
-                        minimumTrackTintColor="#FFFFFF"
+                        minimumTrackTintColor="#00BCD4"
                         maximumTrackTintColor="#000000"
                     />
                 </View>
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     filters: {
-        backgroundColor: "#808080",
+        backgroundColor: "#00BCD4",
         alignItems: 'center',
         height: '10%',
         display: 'flex',
