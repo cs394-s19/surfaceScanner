@@ -33,15 +33,25 @@ export default class QrcodePage extends React.Component{
     return (
 
 
-      <View style={{ flex: 1, alignItems: "center" }}>
-  <Container>
-    <QRCode
-    value={this.state.text}
-    size={200}
-    bgColor='black'
-    fgColor='white'/>
+      <View style={{ flex: 1, position: 'relative', top: 150, alignItems: "center" }}>
+        <Container>
+          <QRCode
+            value={this.state.text}
+            size={200}
+            bgColor='black'
+            fgColor='white'/>
 
-      </Container>
+
+
+
+
+        </Container>
+        <Container>
+
+          <Text>Please scan this QR code with the control device</Text>
+        </Container>
+
+
 
 
       </View>
