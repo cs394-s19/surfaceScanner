@@ -12,8 +12,9 @@ import { Ionicons } from '@expo/vector-icons';
 
 const SliderFunc = ()=> ( <Slider
     style={{width: 200, height: 40}}
-    minimumValue={0}
-    maximumValue={1}
+    minimumValue={-100}
+    maximumValue={100}
+    value={0}
     minimumTrackTintColor="#FFFFFF"
     maximumTrackTintColor="#000000"
 />);
@@ -22,11 +23,13 @@ export default class SliderPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            setting: "Brightness"
+            setting: "Brightness",
+            sliderValue: 0,
         };
       }
     onButtonPress= (option) => {
-        this.setState({setting: option})
+        this.setState({setting: option});
+        this.setState({sliderValue: 0})
     };
 
     render() {
@@ -96,8 +99,9 @@ export default class SliderPage extends React.Component {
                     </Text>
                     <Slider
                         style={{width: 200, height: 40}}
-                        minimumValue={0}
-                        maximumValue={1}
+                        minimumValue={-100}
+                        maximumValue={100}
+                        value={this.state.sliderValue}
                         minimumTrackTintColor="#00BCD4"
                         maximumTrackTintColor="#000000"
                     />
@@ -121,7 +125,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     filters: {
-        backgroundColor: "#B2EBF2",
+        backgroundColor: "#E0E0E0",
         alignItems: 'center',
         height: '10%',
         display: 'flex',
