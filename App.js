@@ -1,36 +1,8 @@
-import React, { Component } from 'react';
-import { Container, Header, Content, Button, Text, View } from 'native-base';;
 import SliderPage from './screens/SliderPage';
 import ControlScanScreen from './screens/ControlScanScreen';
-import QrcodePage from './screens/QrcodePage';
-import {createStackNavigator, createAppContainer} from 'react-navigation';
-
-
-// export default class ButtonRoundedExample extends Component {
-//   static navigationOptions = {
-//     title: 'Welcome',
-//   };
-//
-//   render() {
-//     const {navigate} = this.props.navigation;
-//     return (
-//
-//       <View style={{ flex: 1, position: 'relative', top: 350, alignItems: "center" }}>
-//           <Container>
-//             <Button rounded dark large onPress={() => navigate('Slider')}>
-//               <Text> Control </Text>
-//             </Button>
-//             <Text>  </Text>
-//             <Button rounded large onPress={() => navigate('Slider')}>
-//               <Text>   Scan   </Text>
-//             </Button>
-//           </Container>
-//
-//       </View>
-//
-//     );
-//   }
-// }
+import QRCodePage from './screens/QRCodePage';
+import CameraPage from './screens/CameraPage';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 const AppNavigator = createStackNavigator({
   Home: {
@@ -39,8 +11,11 @@ const AppNavigator = createStackNavigator({
   SliderPage: {
     screen: SliderPage
   },
-  QrcodePage: {
-    screen: QrcodePage
+  QRCodePage: {
+    screen: QRCodePage
+  },
+  CameraPage: {
+    screen: CameraPage
   }
 });
 
