@@ -32,7 +32,7 @@ export default class CameraPage extends React.Component {
                         }
                     }));
                 });
-            }, 33);
+            }, 5000);
         }
     }
 
