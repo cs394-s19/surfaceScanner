@@ -46,7 +46,8 @@ export default class SliderPage extends React.Component {
 
     createConnection = uuid => {
         // TODO: add a config file with environment configurations such as which url to use for websockets
-        this.ws = new WebSocket("https://boiling-harbor-73257.herokuapp.com/");
+        // this.ws = new WebSocket("https://boiling-harbor-73257.herokuapp.com/");
+        this.ws = new WebSocket("http://10.105.8.140:5000/");
         this.uuid = uuid;
         this.ws.onopen = () => {
             this.setState({connected: true});
@@ -69,11 +70,11 @@ export default class SliderPage extends React.Component {
     }
 
     onValueChange = value => {
-        if (state.active === "zoom" ) {
+        if (this.state.active === "zoom" || this.state.active === "whiteBalance" ) {
             this.ws.send(JSON.stringify({
                 action: "set_control_info",
                 data: {
-                    key: state.active,
+                    key: this.state.active,
                     value: value,
                     uuid: this.uuid
                 }

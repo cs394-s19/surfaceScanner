@@ -16,7 +16,8 @@ export default class QRCodePage extends React.Component{
       }
     };
 
-    this.ws = new WebSocket("https://boiling-harbor-73257.herokuapp.com/");
+    // this.ws = new WebSocket("https://boiling-harbor-73257.herokuapp.com/");
+    this.ws = new WebSocket("http://10.105.8.140:5000/");
 
     this.ws.onopen = () => {
       this.ws.send(JSON.stringify({
