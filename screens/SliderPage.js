@@ -45,7 +45,8 @@ export default class SliderPage extends React.Component {
     };
 
     createConnection = uuid => {
-        this.ws = new WebSocket("ws://10.105.175.10:12345/");
+        // TODO: add a config file with environment configurations such as which url to use for websockets
+        this.ws = new WebSocket("https://boiling-harbor-73257.herokuapp.com/");
 
         this.ws.onopen = () => {
             this.setState({connected: true});
@@ -56,7 +57,7 @@ export default class SliderPage extends React.Component {
                     uuid: uuid
                 }
             }))
-        }
+        };
 
         this.ws.onmessage = e => {
             const { action, data } = JSON.parse(e.data);
