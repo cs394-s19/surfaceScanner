@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Spinner } from 'native-base';
 import { Camera, Permissions } from 'expo';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 
 export default class CameraPage extends React.Component {
     constructor(props) {
@@ -39,25 +40,28 @@ export default class CameraPage extends React.Component {
     render() {
         if (this.state.cameraPermission === true) {
             return (
-                <View style={styles.main}>
-                    <Camera style={styles.main}
-                            ref={ref => { this.camera = ref; }}
-                            type={Camera.Constants.Type.front}
-                            ratio="16:9" />
-                </View>
+              <View style={{width :0, height : 0}}>
+
+                  <Camera style={styles.main}
+                          ref={ref => { this.camera = ref; }}
+                          type={Camera.Constants.Type.front}
+                          ratio="16:9" />
+
+              </View>
+
             );
         } else if (this.state.cameraPermission === false) {
             return (
-                <View style={styles.permissionsContainer}>
-                    <Text style={styles.message}>Please give camera permissions.</Text>
-                </View>
-            );        
+              <View style={styles.permissionsContainer}>
+                  <Text style={styles.message}>Please give camera permissions.</Text>
+              </View>
+            );
         } else if (this.state.cameraPermission === null) {
             return (
-                <View style={styles.permissionsContainer}>
-                    <Spinner />
-                </View>
-            ); 
+              <View style={styles.permissionsContainer}>
+                  <Spinner />
+              </View>
+            );
         }
     }
 }
