@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { Button, Text, Container, Content } from 'native-base';
 import { Font, AppLoading } from 'expo';
 
+
 export default class ControlScanScreen extends React.Component {
     constructor(props) {
         super(props);
