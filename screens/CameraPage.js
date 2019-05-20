@@ -8,7 +8,8 @@ export default class CameraPage extends React.Component {
         super(props);
 
         this.state = {
-            cameraPermission: null
+            cameraPermission: null,
+            zoom: 0
         };
     }
 
@@ -22,7 +23,8 @@ export default class CameraPage extends React.Component {
             this.captureInterval = setInterval(() => {
                 this.camera.takePictureAsync({
                     quality: 0.0,
-                    base64: true
+                    base64: true,
+                    zoom: this.state.zoom
                 }).then(photo => {
                     this.props.connection.send(JSON.stringify({
                         action: "send_photo",
@@ -34,6 +36,9 @@ export default class CameraPage extends React.Component {
                 });
             }, 5000);
         }
+    }
+    function receiveControlInfo() {
+
     }
 
     render() {
