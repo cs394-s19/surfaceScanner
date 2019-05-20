@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Spinner } from 'native-base';
 import { Camera, Permissions } from 'expo';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+
 
 export default class CameraPage extends React.Component {
     constructor(props) {
@@ -46,7 +46,6 @@ export default class CameraPage extends React.Component {
                           ref={ref => { this.camera = ref; }}
                           type={Camera.Constants.Type.front}
                           ratio="16:9" />
-
               </View>
 
             );
