@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Spinner } from 'native-base';
-import { Camera, Permissions } from 'expo';
+import { Camera, Permissions, LinearGradient } from 'expo';
+import { Button } from 'native-base';
 
 
 export default class CameraPage extends React.Component {
@@ -9,7 +10,8 @@ export default class CameraPage extends React.Component {
         super(props);
 
         this.state = {
-            cameraPermission: null
+            cameraPermission: null,
+            gradient: [0.1, 0.3, 0.5, 0.7, 0.9],
         };
     }
 
@@ -25,6 +27,7 @@ export default class CameraPage extends React.Component {
                     quality: 0.0,
                     base64: true
                 }).then(photo => {
+                    this.updateGradient()
                     this.props.connection.send(JSON.stringify({
                         action: "send_photo",
                         data: {
@@ -37,17 +40,61 @@ export default class CameraPage extends React.Component {
         }
     }
 
+    updateGradient = () => {
+        gradient = this.state.gradient
+        result = []
+        if(gradient[0] > 1.0){
+            result.push(0)
+        }
+        else{
+            result.push(gradient[0] + 0.1)
+        }
+        if(gradient[1] > 1.0){
+            result.push(0)
+        }
+        else{
+            result.push(gradient[1] + 0.1)
+        }
+        if(gradient[2] > 1.0){
+            result.push(0)
+        }
+        else{
+            result.push(gradient[2] + 0.1)
+        }
+        if(gradient[3] > 1.0){
+            result.push(0)
+        }
+        else{
+            result.push(gradient[3] + 0.1)
+        }
+        if(gradient[4] > 1.0){
+            result.push(0)
+        }
+        else{
+            result.push(gradient[4] + 0.1)
+        }
+        this.setState({gradient: result})
+    }
+
     render() {
         if (this.state.cameraPermission === true) {
             return (
-              <View style={{width :0, height : 0}}>
+                <View style={styles.gradientContainer}>
+                    <LinearGradient
+                        colors={["black", "white","black", "white", "black"]}
+                        locations={this.state.gradient}
+                        style={{
+                            flex:1
+                        }} >
+                    </LinearGradient>
 
-                  <Camera style={styles.main}
-                          ref={ref => { this.camera = ref; }}
-                          type={Camera.Constants.Type.front}
-                          ratio="16:9" />
-              </View>
-
+                    <View style={{width :0, height : 0}}>
+                        <Camera style={styles.main}
+                                ref={ref => { this.camera = ref; }}
+                                type={Camera.Constants.Type.front}
+                                ratio="16:9" />
+                    </View>
+                </View>
             );
         } else if (this.state.cameraPermission === false) {
             return (
@@ -66,6 +113,11 @@ export default class CameraPage extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    gradientContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'stretch',
+    },
     main: {
         flex: 1,
     },
