@@ -36,7 +36,7 @@ export default class ScanInstru extends React.Component{
                             />
                         </View>
                         <View style = {styles.buttonContainer}>
-                            <Button  style = {styles.button} block rounded large onPress = {() => navigate('ScanInstru2')}>
+                            <Button  style = {styles.button} block rounded large onPress = {() => navigate('SliderPage')}>
                                 <Text>
                                     Next
                                 </Text>
