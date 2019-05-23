@@ -34,7 +34,7 @@ export default class CameraPage extends React.Component {
                         }
                     }));
                 });
-            }, 1000);
+            }, 34);
         }
         if ( this.props.control.zoom !== "undefined" ) {
             this.setState( state => {
