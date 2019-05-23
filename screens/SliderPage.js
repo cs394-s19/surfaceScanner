@@ -141,8 +141,8 @@ export default class SliderPage extends React.Component {
                                 {this.state.active.charAt(0).toUpperCase() + this.state.active.slice(1)}
                             </Text>
                             <Slider style={styles.slider}
-                                    minimumValue={-100}
-                                    maximumValue={100}
+                                    minimumValue={0}
+                                    maximumValue={1}
                                     onValueChange={this.onValueChange}
                                     value={this.state.values[this.state.active]}
                                     minimumTrackTintColor="#00BCD4"

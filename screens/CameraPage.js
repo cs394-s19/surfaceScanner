@@ -8,8 +8,7 @@ export default class CameraPage extends React.Component {
         super(props);
 
         this.state = {
-            cameraPermission: null,
-            zoom: 0
+            cameraPermission: null
         };
     }
 
@@ -36,27 +35,20 @@ export default class CameraPage extends React.Component {
                 });
             }, 34);
         }
-        if ( this.props.control.zoom !== "undefined" ) {
-            this.setState( state => {
-                return({ zoom:
-                        {
-                            ...state.zoom,
-                            [zoom]: this.props.control.zoom
-                        }
-                });
-            });
-        }
     }
 
 
     render() {
+        const { zoom } = this.props.control;
+
         if (this.state.cameraPermission === true) {
             return (
                 <View style={styles.main}>
                     <Camera style={styles.main}
                             ref={ref => { this.camera = ref; }}
                             type={Camera.Constants.Type.front}
-                            ratio="16:9" />
+                            ratio="16:9"
+                            zoom={zoom} />
                 </View>
             );
         } else if (this.state.cameraPermission === false) {

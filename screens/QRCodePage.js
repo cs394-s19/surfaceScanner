@@ -44,6 +44,8 @@ export default class QRCodePage extends React.Component{
         this.setState({control_connected: true});
       }
       else if (action === "send_control_info") {
+        const { key, value } = data;
+
         this.setState( state => {
         return({ values:
               {
