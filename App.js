@@ -1,7 +1,7 @@
 import SliderPage from './screens/SliderPage';
 import ControlScanScreen from './screens/ControlScanScreen';
 import QRCodePage from './screens/QRCodePage';
-
+import ScanInstru from './screens/ScanInstru';
 import CameraPage from './screens/CameraPage';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
@@ -18,6 +18,9 @@ const AppNavigator = createStackNavigator({
   CameraPage: {
     screen: CameraPage
   },
+  ScanInstru:{
+    screen: ScanInstru
+  }
 
 });
 

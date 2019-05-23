@@ -25,7 +25,7 @@ export default class ControlScanScreen extends React.Component {
                 <Container>
                     <Content contentContainerStyle={styles.container}>
                         <View style={styles.buttonContainer}>
-                            <Button style={styles.button} block rounded dark large onPress={() => navigate('SliderPage')}>
+                            <Button style={styles.button} block rounded dark large onPress={() => navigate('ScanInstru')}>
                                 <Text>Control</Text>
                             </Button>
                             <Button style={styles.button} block rounded large onPress={() => navigate('QRCodePage')}>
