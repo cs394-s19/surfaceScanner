@@ -41,8 +41,8 @@ export default class CameraPage extends React.Component {
     }
 
     updateGradient = () => {
-        gradient = this.state.gradient
-        result = []
+        gradient = this.state.gradient;
+        result = [];
         if(gradient[0] > 1.0){
             result.push(0)
         }
@@ -130,4 +130,5 @@ const styles = StyleSheet.create({
     message: {
         fontSize: 32
     }
-})
+
+});

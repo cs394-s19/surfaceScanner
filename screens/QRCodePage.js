@@ -10,10 +10,21 @@ export default class QRCodePage extends React.Component{
 
     this.state = {
       qr_text: null,
-      control_connected: false
+      control_connected: false,
+      values: {
+        zoom: 0,
+      },
+      server: "cloud"
     };
 
-    this.ws = new WebSocket("https://boiling-harbor-73257.herokuapp.com/");
+    if (this.server === "local") {
+      this.ws = new WebSocket("http://10.105.8.140:5000/");
+    }
+    else {
+      this.ws = new WebSocket("https://boiling-harbor-73257.herokuapp.com/");
+    }
+
+
 
     this.ws.onopen = () => {
       this.ws.send(JSON.stringify({
@@ -32,12 +43,24 @@ export default class QRCodePage extends React.Component{
       } else if (action === "control_connected") {
         this.setState({control_connected: true});
       }
+      else if (action === "send_control_info") {
+        const { key, value } = data;
+
+        this.setState( state => {
+        return({ values:
+              {
+                ...state.values,
+                [key]: value
+              }
+        });
+        });
+      }
     };
   }
 
   render() {
     if (this.state.control_connected) {
-      return (<CameraPage connection={this.ws} uuid={this.state.qr_text} />)
+      return (<CameraPage connection={this.ws} uuid={this.state.qr_text} control={this.values}/>)
     } else {
       if (this.state.qr_text === null) {
         return (
