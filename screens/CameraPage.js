@@ -17,11 +17,16 @@ export default class CameraPage extends React.Component {
 
     async componentDidMount() {
         const { status } = await Permissions.askAsync(Permissions.CAMERA);
+
+
+
+        let i = 1;
         this.setState({
             cameraPermission: status === "granted"
+
         });
 
-        if (status === "granted") {
+        if (status === "granted"&& this.props.action === null) {
             this.captureInterval = setInterval(() => {
                 this.camera.takePictureAsync({
                     quality: 0.0,
@@ -32,17 +37,38 @@ export default class CameraPage extends React.Component {
                         action: "send_photo",
                         data: {
                             uuid: this.props.uuid,
-                            data: photo.base64
+                            data: photo.base64,
+                            index: 0
                         }
                     }));
                 });
             }, 34);
         }
+
+      while (status === "granted" && i < 9 && this.props.action === "take_picture") {
+        this.captureInterval = setInterval(() => {
+          this.camera.takePictureAsync({
+            quality: 0.0,
+            base64: true
+          }).then(photo => {
+            this.updateGradient()
+            this.props.connection.send(JSON.stringify({
+              action: "completed",
+              data: {
+                uuid: this.props.uuid,
+                data: photo.base64,
+                index: i
+              }
+            }));
+          });
+        }, 500);
+        i = i + 1;
+      }
     }
 
     updateGradient = () => {
         gradient = this.state.gradient;
-        result = [];
+        result = []
         if(gradient[0] > 1.0){
             result.push(0)
         }
@@ -130,5 +156,4 @@ const styles = StyleSheet.create({
     message: {
         fontSize: 32
     }
-
-});
+})

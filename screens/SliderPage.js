@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, Slider } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Camera, BarCodeScanner, Permissions } from 'expo';
-import { Spinner } from 'native-base';
+import { Spinner,Container, Header, Left, Body, Right, Title } from 'native-base';
 
 const ButtonIcon = ({ name }) => {
     return (
@@ -17,6 +17,7 @@ export default class SliderPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            mode: "set up mode",
             active: "brightness",
             connected: false,
             cameraPermission: null,
@@ -71,6 +72,10 @@ export default class SliderPage extends React.Component {
             if (action === "send_photo") {
                 this.setState({previewPhoto: "data:image/jpg;base64," + data});
             }
+
+            if (action === "take_picture"){
+                this.setState({previewPhoto: ""});
+            }
         }
     }
 
@@ -94,7 +99,19 @@ export default class SliderPage extends React.Component {
                 }
             });
         });
-    }
+    };
+
+    StartScan = () => {
+        this.setState({
+            mode: "scan mode"
+        });
+
+        this.ws.send(JSON.stringify({
+            action:"take_picture"
+            }
+        ))
+    };
+
 
     onBarcodeScanned = ({ type, data }) => {
         console.log(data);
@@ -109,7 +126,22 @@ export default class SliderPage extends React.Component {
 
         if (this.state.connected) {
             return (
+
                 <View style={styles.container}>
+                    <Header>
+
+                        <Body>
+                        <Title>{this.state.mode}</Title>
+                        </Body>
+                        <Right>
+                            <Button hasText transparent
+                                    onPress={() => this.StartScan()}>
+                                <Text>Start Scan</Text>
+                            </Button>
+                        </Right>
+                    </Header>
+
+
                     <Image style={styles.imagePreview}
                            source={{uri: previewPhoto == null ? null : previewPhoto.replace(/\s/g, '')}}
                            fadeDuration={0} />

@@ -9,6 +9,7 @@ export default class QRCodePage extends React.Component{
     super(props);
 
     this.state = {
+      action: null,
       qr_text: null,
       control_connected: false,
       values: {
@@ -43,6 +44,9 @@ export default class QRCodePage extends React.Component{
       } else if (action === "control_connected") {
         this.setState({control_connected: true});
       }
+        else if (action === "take_picture") {
+        this.setState({action: "take_picture"});
+      }
       else if (action === "send_control_info") {
         const { key, value } = data;
 
@@ -60,7 +64,7 @@ export default class QRCodePage extends React.Component{
 
   render() {
     if (this.state.control_connected) {
-      return (<CameraPage connection={this.ws} uuid={this.state.qr_text} control={this.values}/>)
+      return (<CameraPage connection={this.ws} uuid={this.state.qr_text} control={this.values} action = {this.state.action}/>)
     } else {
       if (this.state.qr_text === null) {
         return (
