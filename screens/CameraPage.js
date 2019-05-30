@@ -26,8 +26,9 @@ export default class CameraPage extends React.Component {
 
         });
 
-        if (status === "granted"&& this.props.action === null) {
+        if (status === "granted") {
             this.captureInterval = setInterval(() => {
+              if (this.props.action === "take_picture") clearInterval();
                 this.camera.takePictureAsync({
                     quality: 0.0,
                     base64: true
@@ -61,7 +62,7 @@ export default class CameraPage extends React.Component {
               }
             }));
           });
-        }, 500);
+        }, 5000);
         i = i + 1;
       }
     }

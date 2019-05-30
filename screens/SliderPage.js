@@ -105,11 +105,18 @@ export default class SliderPage extends React.Component {
         this.setState({
             mode: "scan mode"
         });
+        console.log('the state1 is ', this.state.action)
 
         this.ws.send(JSON.stringify({
-            action:"take_picture"
+
+            action:"take_picture",
+            data: {
+
+                uuid: this.uuid
+            }
             }
         ))
+        console.log('the state2 is ', this.state.action)
     };
 
 

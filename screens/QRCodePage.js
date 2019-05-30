@@ -38,6 +38,7 @@ export default class QRCodePage extends React.Component{
 
     this.ws.onmessage = e => {
       const { action, data } = JSON.parse(e.data);
+      console.log('the state3 is ', this.state.action)
       if (action === "set_uuid") {
         const { uuid } = data;
         this.setState({qr_text: uuid})
@@ -45,6 +46,7 @@ export default class QRCodePage extends React.Component{
         this.setState({control_connected: true});
       }
         else if (action === "take_picture") {
+        console.log('the state4 is ', this.state.action)
         this.setState({action: "take_picture"});
       }
       else if (action === "send_control_info") {
@@ -64,7 +66,12 @@ export default class QRCodePage extends React.Component{
 
   render() {
     if (this.state.control_connected) {
-      return (<CameraPage connection={this.ws} uuid={this.state.qr_text} control={this.values} action = {this.state.action}/>)
+      console.log('the state5 is ', this.state.action)
+      if (this.state.action === "take_picture")
+        return (<CameraPage connection={this.ws} uuid={this.state.qr_text} control={this.values} action = {this.state.action}/>)
+      else
+        return (<CameraPage connection={this.ws} uuid={this.state.qr_text} control={this.values} action = {this.state.action}/>)
+
     } else {
       if (this.state.qr_text === null) {
         return (
