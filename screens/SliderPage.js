@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Camera, BarCodeScanner, Permissions } from 'expo';
 import { Spinner } from 'native-base';
+import Connection from './Connection';
 
 const ButtonIcon = ({ name }) => {
     return (
@@ -44,35 +45,12 @@ export default class SliderPage extends React.Component {
             active: option
         });
     };
-
-    createConnection = uuid => {
-        // TODO: add a config file with environment configurations such as which url to use for websockets
-        if (this.server === "local") {
-            this.ws = new WebSocket("http://10.105.8.140:5000/");
+    
+    onmessage = (action, data) => {
+        if (action === "send_photo") {
+            this.setState({previewPhoto: "data:image/jpg;base64," + data});
         }
-        else {
-            this.ws = new WebSocket("https://boiling-harbor-73257.herokuapp.com/");
-        }
-        this.uuid = uuid;
-        this.ws.onopen = () => {
-            this.setState({connected: true});
-            this.ws.send(JSON.stringify({
-                action: "set_party",
-                data: {
-                    party: "control",
-                    uuid: uuid
-                }
-            }))
-        };
-
-        this.ws.onmessage = e => {
-            const { action, data } = JSON.parse(e.data);
-
-            if (action === "send_photo") {
-                this.setState({previewPhoto: "data:image/jpg;base64," + data});
-            }
-        }
-    }
+    };
 
     onValueChange = value => {
         if (this.state.active === "zoom" || this.state.active === "whiteBalance" ) {
@@ -100,7 +78,7 @@ export default class SliderPage extends React.Component {
         console.log(data);
 
         if (type == BarCodeScanner.Constants.BarCodeType.qr) {
-            this.createConnection(data);
+            this.ws = new Connection("control", this.onmessage, uuid);
         }
     };
 

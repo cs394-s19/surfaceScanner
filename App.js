@@ -21,7 +21,6 @@ const AppNavigator = createStackNavigator({
   ScanInstru:{
     screen: ScanInstru
   }
-
 });
 
 export default createAppContainer(AppNavigator);
