@@ -29,7 +29,7 @@ export default class SliderPage extends React.Component {
                 balance: 0,
                 exposure: 0
             },
-            server: "cloud"
+            server: "local"
         };
     }
 
@@ -49,7 +49,7 @@ export default class SliderPage extends React.Component {
     createConnection = uuid => {
         // TODO: add a config file with environment configurations such as which url to use for websockets
         if (this.server === "local") {
-            this.ws = new WebSocket("http://10.105.8.140:5000/");
+            this.ws = new WebSocket("http://10.105.169.37:5000/");
         }
         else {
             this.ws = new WebSocket("https://boiling-harbor-73257.herokuapp.com/");
