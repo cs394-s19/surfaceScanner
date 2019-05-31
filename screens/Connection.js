@@ -4,7 +4,7 @@ const SERVER_ADDRESS = "https://boiling-harbor-73257.herokuapp.com/";
 export default class Connection {
     constructor(device_type, msg_callback, uuid = null) {
         this._wscon = new WebSocket(SERVER_ADDRESS);
-        this.onmessage = msg_callback;
+        this.msg_callback = msg_callback;
         this._device_type = device_type;
 
         this.uuid = uuid;
@@ -19,6 +19,8 @@ export default class Connection {
 
         if (this._device_type == "scan")
             this._wscon.onopen = this.setup_scan;
+
+        this._wscon.onmessage = this.wrap_onmessage;
     }
 
     wrap_onmessage = data => {
