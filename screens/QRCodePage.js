@@ -18,7 +18,7 @@ export default class QRCodePage extends React.Component{
       server: "local"
     };
 
-    if (this.server === "local") {
+    if (this.state.server === "local") {
       this.ws = new WebSocket("http://10.105.169.37:5000/");
     }
     else {
@@ -37,7 +37,7 @@ export default class QRCodePage extends React.Component{
     };
 
     this.ws.onmessage = e => {
-      const { action, data } = JSON.parse(e.data);
+      let { action, data } = JSON.parse(e.data);
       console.log('the state3 is ', this.state.action)
       if (action === "set_uuid") {
         const { uuid } = data;

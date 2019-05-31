@@ -48,7 +48,7 @@ export default class SliderPage extends React.Component {
 
     createConnection = uuid => {
         // TODO: add a config file with environment configurations such as which url to use for websockets
-        if (this.server === "local") {
+        if (this.state.server === "local") {
             this.ws = new WebSocket("http://10.105.169.37:5000/");
         }
         else {
