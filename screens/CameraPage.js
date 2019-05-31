@@ -27,18 +27,22 @@ export default class CameraPage extends React.Component {
                     quality: 0.0,
                     base64: true
                 }).then(photo => {
-                    this.updateGradient()
-                    this.props.connection.send(JSON.stringify({
+                    this.updateGradient();
+                    this.props.connection.send({
                         action: "send_photo",
                         data: {
                             uuid: this.props.uuid,
                             data: photo.base64
                         }
-                    }));
+                    });
                 });
             }, 34);
         }
     }
+
+    componentWillUnmount = () => {
+        clearInterval(this.captureInterval);
+    };
 
     updateGradient = () => {
         gradient = this.state.gradient;

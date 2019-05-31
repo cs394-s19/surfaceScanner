@@ -54,14 +54,14 @@ export default class SliderPage extends React.Component {
 
     onValueChange = value => {
         if (this.state.active === "zoom" || this.state.active === "whiteBalance" ) {
-            this.ws.send(JSON.stringify({
+            this.ws.send({
                 action: "set_control_info",
                 data: {
                     key: this.state.active,
                     value: value,
                     uuid: this.uuid
                 }
-            }))
+            });
         }
 
         this.setState(state => {
@@ -75,10 +75,9 @@ export default class SliderPage extends React.Component {
     }
 
     onBarcodeScanned = ({ type, data }) => {
-        console.log(data);
-
         if (type == BarCodeScanner.Constants.BarCodeType.qr) {
-            this.ws = new Connection("control", this.onmessage, uuid);
+            this.ws = new Connection("control", this.onmessage, data);
+            this.setState({connected: true})
         }
     };
 

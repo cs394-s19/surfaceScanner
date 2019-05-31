@@ -1,5 +1,5 @@
-// const SERVER_ADDRESS = "http://10.105.8.140:5000/"
-const SERVER_ADDRESS = "https://boiling-harbor-73257.herokuapp.com/";
+// const SERVER_ADDRESS = "ws://10.105.8.140:5000/"
+const SERVER_ADDRESS = "ws://boiling-harbor-73257.herokuapp.com/";
 
 export default class Connection {
     constructor(device_type, msg_callback, uuid = null) {
@@ -23,13 +23,13 @@ export default class Connection {
         this._wscon.onmessage = this.wrap_onmessage;
     }
 
-    wrap_onmessage = data => {
-        const { action, data } = JSON.parse(data.data);
+    wrap_onmessage = raw_data => {
+        const { action, data } = JSON.parse(raw_data.data);
 
         if (action === "set_uuid" && this._device_type === "scan")
             this.uuid = data.uuid;
 
-        this.msg_callback.call(action, data);
+        this.msg_callback(action, data);
     };
 
     setup_scan = () => {
@@ -42,7 +42,7 @@ export default class Connection {
     };
 
     setup_control = () => {
-        this.ws.send(JSON.stringify({
+        this._wscon.send(JSON.stringify({
             action: "set_party",
             data: {
                 party: "control",
