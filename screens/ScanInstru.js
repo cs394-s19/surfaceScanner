@@ -22,18 +22,22 @@ export default class ScanInstru extends React.Component{
                     <View style = {styles.progBar}>
                         <ProgressBar progress={0.33} color={Colors.red800} />
                     </View>
-                    <View style = {styles.component}>   
+                    <View style = {styles.component}>
                         <View style = {styles.textContainer}>
                             <Text style = {styles.text}>
-                                Ensure that you are in a dimly lit environment. Turn off light, close binds.
+                                Ensure that you are in a dimly lit environment. Turn off lights, close blinds.
                             </Text>
                         </View>
-                        
                         <View style = {styles.imageContainer}>
-                            <Image 
-                                style = {styles.image} 
+                            <Image
+                                style = {styles.image}
                                 source = {require('../assets/images/demo.png')}
                             />
+                        </View>
+                        <View style = {styles.textContainer}>
+                            <Text style = {styles.text}>
+                                Position the scanning device approximately one focal length away from the object.
+                            </Text>
                         </View>
                         <View style = {styles.buttonContainer}>
                             <Button  style = {styles.button} block rounded large onPress = {() => navigate('SliderPage')}>
@@ -41,10 +45,10 @@ export default class ScanInstru extends React.Component{
                                     Next
                                 </Text>
                             </Button>
-                        </View> 
+                        </View>
                     </View>
                 </Content>
-                
+
             </Container>
         )
     }
@@ -76,16 +80,16 @@ const styles = StyleSheet.create({
         marginBottom: 3
     },
     textContainer:{
-        height: 80,
+        height: 50,
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        backgroundColor: 'rgba(35, 35, 35, 0.3)'
+        backgroundColor: '#fff'
     },
     text:{
-        fontWeight: 'bold', 
-        color: '#fff',
-        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#000',
+        fontSize: 16,
         textAlign: 'center'
     },
     image :{
@@ -98,7 +102,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        backgroundColor: 'rgba(191,85,236,1)',
+        backgroundColor: '#fff',
     }
 })
-
