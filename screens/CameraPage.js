@@ -15,29 +15,31 @@ export default class CameraPage extends React.Component {
         };
     }
 
+    componentWillUnmount = () => {
+        clearInterval(this.captureInterval);
+    };
+
     async componentDidMount() {
         const { status } = await Permissions.askAsync(Permissions.CAMERA);
-
-
-
         let i = 1;
         this.setState({
             cameraPermission: status === "granted"
-
         });
+
+        console.log('rerenders???')
 
         if (status === "granted"  && this.props.action === null) {
             this.captureInterval = setInterval(() => {
 
-              if (this.props.action === "take_picture")
-              {
-                console.log("1")
+                if (this.props.action === "take_picture")
+                {
+                    console.log("1")
+                    clearInterval(this.captureInterval);
+                }
 
-                clearInterval();
-              }
-              console.log("2")
+                console.log("2")
 
-              this.camera.takePictureAsync({
+                this.camera.takePictureAsync({
                     quality: 0.0,
                     base64: true
                 }).then(photo => {
@@ -52,27 +54,32 @@ export default class CameraPage extends React.Component {
                     }));
                 });
             }, 34);
+
+            console.log('3')
+            
         }
 
-      while (status === "granted" && i < 9 && this.props.action === "take_picture") {
-        this.captureInterval = setInterval(() => {
-          this.camera.takePictureAsync({
-            quality: 0.0,
-            base64: true
-          }).then(photo => {
-            this.updateGradient()
-            this.props.connection.send(JSON.stringify({
-              action: "take_picture",
-              data: {
-                uuid: this.props.uuid,
-                data: photo.base64,
-                index: i
-              }
-            }));
-          });
-        }, 5000);
-        i = i + 1;
-      }
+        console.log('i is', i, 'action', this.props.action)
+        while (status === "granted" && i < 9 && this.props.action === "take_picture") {
+            console.log('taking pic', i )
+            this.captureInterval = setInterval(() => {
+                this.camera.takePictureAsync({
+                quality: 0.0,
+                base64: true
+                }).then(photo => {
+                    this.updateGradient()
+                    this.props.connection.send(JSON.stringify({
+                        action: "take_picture",
+                        data: {
+                            uuid: this.props.uuid,
+                            data: photo.base64,
+                            index: i
+                        }
+                    }));
+                });
+            }, 5000);
+            i = i + 1;
+        }
     }
 
     updateGradient = () => {
