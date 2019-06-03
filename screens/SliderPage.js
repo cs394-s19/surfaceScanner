@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Camera, BarCodeScanner, Permissions } from 'expo';
 import { Spinner } from 'native-base';
 import Connection from './Connection';
+import { NavigationEvents } from 'react-navigation';
 
 const ButtonIcon = ({ name }) => {
     return (
@@ -83,6 +84,7 @@ export default class SliderPage extends React.Component {
 
     render() {
         const { previewPhoto } = this.state;
+        const { navigate } = this.props.navigation;
 
         if (this.state.connected) {
             return (
@@ -112,6 +114,11 @@ export default class SliderPage extends React.Component {
                                     title=""
                                     onPress={() => this.onButtonPress('zoom')}
                                     type="clear" />
+                            <Button  style = {styles.button} block rounded large onPress = {() => navigate('PresentPage')}>
+                                <Text>
+                                    Next
+                                </Text>
+                            </Button>
                         </View>
                         <View style={styles.sliderContainer}>
                             <Text style={styles.caption}>

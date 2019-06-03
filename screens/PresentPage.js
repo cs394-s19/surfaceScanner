@@ -29,7 +29,7 @@ export default class ScanInstru extends React.Component{
                         <View style = {styles.buttonContainer}>
                             <Button  style = {styles.button} block rounded large onPress = {() => navigate('SliderPage')}>
                                 <Text>
-                                    Next
+                                    Back
                                 </Text>
                             </Button>
                         </View>
