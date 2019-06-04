@@ -3,12 +3,8 @@ import { StyleSheet, Text, View, Image, Slider } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Camera, BarCodeScanner, Permissions } from 'expo';
-<<<<<<< HEAD
-import { Spinner,Container, Header, Left, Body, Right, Title } from 'native-base';
-=======
 import { Spinner } from 'native-base';
 import Connection from './Connection';
->>>>>>> master
 
 const ButtonIcon = ({ name }) => {
     return (
