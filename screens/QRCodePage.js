@@ -1,8 +1,9 @@
 import React from 'react';
 import QRCode from 'react-native-qrcode';
 import { StyleSheet, View } from 'react-native';
-import { Container, Text, Spinner } from "native-base";
+import { Text, Spinner } from "native-base";
 import CameraPage from './CameraPage';
+import Connection from './Connection';
 
 export default class QRCodePage extends React.Component{
   constructor(props) {
@@ -14,62 +15,35 @@ export default class QRCodePage extends React.Component{
       control_connected: false,
       values: {
         zoom: 0,
-      },
-      server: "cloud"
-    };
-
-    if (this.state.server === "local") {
-      this.ws = new WebSocket("http://10.105.169.37:5000/");
-    }
-    else {
-      this.ws = new WebSocket("https://boiling-harbor-73257.herokuapp.com/");
-    }
-
-
-
-    this.ws.onopen = () => {
-      this.ws.send(JSON.stringify({
-        action: "set_party",
-        data: {
-          party: "scan"
-        }
-      }));
-    };
-
-    this.ws.onmessage = e => {
-      let { action, data } = JSON.parse(e.data);
-      console.log('the state3 is ', this.state.action)
-      if (action === "set_uuid") {
-        const { uuid } = data;
-        this.setState({qr_text: uuid})
-      } else if (action === "control_connected") {
-        this.setState({control_connected: true});
-      }
-        else if (action === "take_picture") {
-        console.log('the state4 is ', this.state.action)
-        this.setState({action: "take_picture"});
-      }
-      else if (action === "send_control_info") {
-        const { key, value } = data;
-
-        this.setState( state => {
-        return({ values:
-              {
-                ...state.values,
-                [key]: value
-              }
-        });
-        });
       }
     };
+
+    this.ws = new Connection("scan", this.onmessage);
   }
+
+  onmessage = (action, data) => {
+    if (action === "set_uuid") {
+      const { uuid } = data;
+      this.setState({qr_text: uuid})
+    } else if (action === "control_connected") {
+      this.setState({control_connected: true});
+    } else if (action === "send_control_info") {
+      const { key, value } = data;
+
+      this.setState(state => {
+        return({
+          values: {
+            ...state.values,
+            [key]: value
+          }
+        });
+      });
+    }
+  };
 
   render() {
     if (this.state.control_connected) {
-      console.log('the state5 is ', this.state.action)
       return (<CameraPage connection={this.ws} uuid={this.state.qr_text} control={this.values} action = {this.state.action}/>)
-   
-
     } else {
       if (this.state.qr_text === null) {
         return (
@@ -107,4 +81,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly'
   }
-})
+});
