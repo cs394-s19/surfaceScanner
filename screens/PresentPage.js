@@ -1,43 +1,94 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
-import { Container, Header, Text, Title, Content, Button } from 'native-base';
+import { Spinner, Container, Header, Text, Title, Content, Button } from 'native-base';
 import { NavigationEvents } from 'react-navigation';
+
 
 export default class ScanInstru extends React.Component{
     constructor(props) {
         super(props);
+        this.state = {
+            timer: false
+        }
     }
+
+    changeTimer = () => {
+        console.log('is it here?')
+        setTimeout(() => {
+            this.setState({
+                timer: true
+            })}, 5000
+        );
+        console.log('new state', this.state.timer)
+    }
+
+
 
     render(){
 
-        const { navigate } = this.props.navigation;
+        const { navigate, getParam } = this.props.navigation;  
+        this.changeTimer()
+        setInterval(
+            () => {console.log('state is', this.state.timer)}, 1000
+        )
 
-        return(
-            <Container >
-                <Content contentContainerStyle={styles.container}>
-                    <Header>
-                        <Title> Model </Title>
-                    </Header>
+        if (!this.state.timer){
+            return(
+                <Container >
+                    <Content contentContainerStyle={styles.container}>
+                        <Header>
+                            <Title> Model </Title>
+                        </Header>
+                
+                        <View style = {styles.component}>
+                            <View style = {styles.imageContainer}>
+                            <View>
+                                < Spinner />
+                            </View>
+                            </View>
+                            <View style = {styles.buttonContainer}>
+                                <Button  style = {styles.button} block rounded large onPress = {() => navigate('SliderPage')}>
+                                    <Text>
+                                        Back
+                                    </Text>
+                                </Button>
+                            </View>
+                        </View>
+                    </Content>
+    
+                </Container>
+            )
             
-                    <View style = {styles.component}>
-                        <View style = {styles.imageContainer}>
+        }
+        else {
+            return(
+                <Container >
+                    <Content contentContainerStyle={styles.container}>
+                        <Header>
+                            <Title> Model </Title>
+                        </Header>
+                
+                        <View style = {styles.component}>
+                            <View style = {styles.imageContainer}>
                             <Image
                                 style = {styles.image}
                                 source = {require('../assets/images/model.png')}
                             />
+                            </View>
+                            <View style = {styles.buttonContainer}>
+                                <Button  style = {styles.button} block rounded large onPress = {() => navigate('SliderPage')}>
+                                    <Text>
+                                        Back
+                                    </Text>
+                                </Button>
+                            </View>
                         </View>
-                        <View style = {styles.buttonContainer}>
-                            <Button  style = {styles.button} block rounded large onPress = {() => navigate('SliderPage')}>
-                                <Text>
-                                    Back
-                                </Text>
-                            </Button>
-                        </View>
-                    </View>
-                </Content>
-
-            </Container>
-        )
+                    </Content>
+    
+                </Container>
+            )
+            
+        }
     }
 
 }

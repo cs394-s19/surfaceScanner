@@ -29,6 +29,7 @@ export default class SliderPage extends React.Component {
                 balance: 0,
                 exposure: 0
             },
+            timer: false,
             server: "cloud"
         };
     }
@@ -45,6 +46,15 @@ export default class SliderPage extends React.Component {
             active: option
         });
     };
+
+    changeTimer = () => {
+
+        setTimeout(
+            this.setState({
+                timer: true
+            }), 5000
+        );
+    }
 
     createConnection = uuid => {
         // TODO: add a config file with environment configurations such as which url to use for websockets
@@ -143,7 +153,11 @@ export default class SliderPage extends React.Component {
                         </Body>
                         <Right>
                             <Button hasText transparent
-                                    onPress={() => this.StartScan()}>
+                                    onPress={() => this.StartScan()}
+                                    onPress={() => this.changeTimer()}
+                                    onPress={() => navigate('PresentPage', {
+                                        timer : this.state.timer
+                                      })}>                        
                                 <Text>Start Scan</Text>
                             </Button>
                         </Right>
@@ -175,11 +189,7 @@ export default class SliderPage extends React.Component {
                                     title=""
                                     onPress={() => this.onButtonPress('zoom')}
                                     type="clear" />
-                            <Button  style = {styles.button} block rounded large onPress = {() => navigate('PresentPage')}>
-                                <Text>
-                                    Back
-                                </Text>
-                            </Button>
+            
                         </View>
                         <View style={styles.sliderContainer}>
                             <Text style={styles.caption}>

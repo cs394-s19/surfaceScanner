@@ -7,8 +7,12 @@ import { NavigationEvents } from 'react-navigation';
 export default class ScanInstru extends React.Component{
     constructor(props) {
         super(props);
+        this.state={
+            timer: false
+        }
     }
 
+  
     render(){
 
         const { navigate } = this.props.navigation;
