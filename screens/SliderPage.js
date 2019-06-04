@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, Slider } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Camera, BarCodeScanner, Permissions } from 'expo';
-import { Spinner } from 'native-base';
+import { Spinner, Header, Body, Title, Right } from 'native-base';
 import Connection from './Connection';
 
 const ButtonIcon = ({ name }) => {
@@ -29,8 +29,7 @@ export default class SliderPage extends React.Component {
                 saturation: 0,
                 balance: 0,
                 exposure: 0
-            },
-            server: "cloud"
+            }
         };
     }
 
@@ -60,7 +59,7 @@ export default class SliderPage extends React.Component {
                 data: {
                     key: this.state.active,
                     value: value,
-                    uuid: this.uuid
+                    uuid: this.ws.uuid
                 }
             });
         }
@@ -79,18 +78,13 @@ export default class SliderPage extends React.Component {
         this.setState({
             mode: "scan mode"
         });
-        console.log('the state1 is ', this.state.action)
 
-        this.ws.send(JSON.stringify({
-
-            action:"take_picture",
+        this.ws.send({
+            action: "start_scan",
             data: {
-
-                uuid: this.uuid
+                uuid: this.ws.uuid
             }
-            }
-        ))
-        console.log('the state2 is ', this.state.action)
+        });
     };
 
 

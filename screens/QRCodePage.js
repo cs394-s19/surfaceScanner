@@ -10,7 +10,7 @@ export default class QRCodePage extends React.Component{
     super(props);
 
     this.state = {
-      action: null,
+      action: "waiting",
       qr_text: null,
       control_connected: false,
       values: {
@@ -38,12 +38,16 @@ export default class QRCodePage extends React.Component{
           }
         });
       });
+    } else if (action === "start_scan") {
+      this.setState({action: "scanning"});
+    } else if (action === "end_scan") {
+      this.setState({action: "waiting"});
     }
   };
 
   render() {
     if (this.state.control_connected) {
-      return (<CameraPage connection={this.ws} uuid={this.state.qr_text} control={this.values} action = {this.state.action}/>)
+      return (<CameraPage connection={this.ws} uuid={this.state.qr_text} control={this.values} action={this.state.action}/>);
     } else {
       if (this.state.qr_text === null) {
         return (
