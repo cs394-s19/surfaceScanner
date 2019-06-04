@@ -15,7 +15,7 @@ export default class QRCodePage extends React.Component{
       values: {
         zoom: 0,
       },
-      server: "local"
+      server: "cloud"
     };
 
     if (this.state.server === "local") {

@@ -29,7 +29,7 @@ export default class SliderPage extends React.Component {
                 balance: 0,
                 exposure: 0
             },
-            server: "local"
+            server: "cloud"
         };
     }
 
