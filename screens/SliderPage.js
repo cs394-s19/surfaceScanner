@@ -45,7 +45,7 @@ export default class SliderPage extends React.Component {
             active: option
         });
     };
-    
+
     onmessage = (action, data) => {
         if (action === "send_photo") {
             this.setState({previewPhoto: "data:image/jpg;base64," + data});
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(35, 35, 35, 0.3)'
     },
     overlayText: {
-        fontWeight: 'bold', 
+        fontWeight: 'bold',
         color: '#fff',
         fontSize: 24,
         textAlign: 'center'

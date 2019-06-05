@@ -17,27 +17,32 @@ export default class ScanInstru extends React.Component{
             <Container >
                 <Content contentContainerStyle={styles.container}>
                     <Header>
-                        <Title> Step 1 </Title>
+                        <Title> Step 3 </Title>
                     </Header>
                     <View style = {styles.progBar}>
-                        <ProgressBar progress={0.33} color={Colors.red800} />
+                        <ProgressBar progress={0.95} color={Colors.red800} />
                     </View>
                     <View style = {styles.component}>
                         <View style = {styles.textContainer}>
                             <Text style = {styles.text}>
-                                Ensure that you are in a dimly lit environment. Turn off lights, close blinds.
+                                You can alter the 3D image using the sliders on the control device (this device).
                             </Text>
                         </View>
                         <View style = {styles.imageContainer}>
                             <Image
                                 style = {styles.image}
-                                source = {require('../assets/images/lights-off.png')}
+                                source = {require('../assets/images/sliders.png')}
                             />
                         </View>
+                        <View style = {styles.textContainer}>
+                            <Text style = {styles.text}>
+                                Once surrounding light is dimmed and the scanning device is fixed in a stable position, you are ready to scan.
+                            </Text>
+                        </View>
                         <View style = {styles.buttonContainer}>
-                            <Button  style = {styles.button} block rounded large onPress = {() => navigate('ScanInstru1')}>
+                            <Button  style = {styles.button} block large onPress = {() => navigate('SliderPage')}>
                                 <Text>
-                                    Next
+                                    Start Scan
                                 </Text>
                             </Button>
                         </View>
@@ -68,6 +73,7 @@ const styles = StyleSheet.create({
     button:{
         alignSelf: 'stretch',
         textAlign: 'center',
+        backgroundColor: 'red'
     },
     buttonContainer:{
         width: 180,
@@ -75,7 +81,7 @@ const styles = StyleSheet.create({
         marginBottom: 3
     },
     textContainer:{
-        height: 50,
+        height: 80,
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
@@ -88,8 +94,8 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     image :{
-        width: 250,
-        height: 250,
+        width: 150,
+        height: 150,
         alignSelf: 'center'
     },
     imageContainer:{

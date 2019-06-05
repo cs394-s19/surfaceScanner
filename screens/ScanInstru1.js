@@ -17,25 +17,25 @@ export default class ScanInstru extends React.Component{
             <Container >
                 <Content contentContainerStyle={styles.container}>
                     <Header>
-                        <Title> Step 1 </Title>
+                        <Title> Step 2 </Title>
                     </Header>
                     <View style = {styles.progBar}>
-                        <ProgressBar progress={0.33} color={Colors.red800} />
+                        <ProgressBar progress={0.67} color={Colors.red800} />
                     </View>
                     <View style = {styles.component}>
                         <View style = {styles.textContainer}>
                             <Text style = {styles.text}>
-                                Ensure that you are in a dimly lit environment. Turn off lights, close blinds.
+                                Position the scanning device approximately one focal length away from the object.
                             </Text>
                         </View>
                         <View style = {styles.imageContainer}>
                             <Image
                                 style = {styles.image}
-                                source = {require('../assets/images/lights-off.png')}
+                                source = {require('../assets/images/demo.png')}
                             />
                         </View>
                         <View style = {styles.buttonContainer}>
-                            <Button  style = {styles.button} block rounded large onPress = {() => navigate('ScanInstru1')}>
+                            <Button  style = {styles.button} block rounded large onPress = {() => navigate('ScanInstru2')}>
                                 <Text>
                                     Next
                                 </Text>
@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     image :{
-        width: 250,
-        height: 250,
+        width: 350,
+        height: 150,
         alignSelf: 'center'
     },
     imageContainer:{
