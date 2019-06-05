@@ -17,7 +17,7 @@ export default class ScanInstru extends React.Component{
         setTimeout(() => {
             this.setState({
                 timer: true
-            })}, 5000
+            })}, 9000
         );
         console.log('new state', this.state.timer)
     }
