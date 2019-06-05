@@ -7,49 +7,44 @@ import { NavigationEvents } from 'react-navigation';
 export default class ScanInstru extends React.Component{
     constructor(props) {
         super(props);
-        this.state={
-            timer: false
-        }
     }
 
-  
     render(){
 
         const { navigate } = this.props.navigation;
 
         return(
-            <Container >
-                <Content contentContainerStyle={styles.container}>
-                    <Header>
-                        <Title> Step 1 </Title>
-                    </Header>
-                    <View style = {styles.progBar}>
-                        <ProgressBar progress={0.33} color={Colors.red800} />
-                    </View>
-                    <View style = {styles.component}>   
-                        <View style = {styles.textContainer}>
-                            <Text style = {styles.text}>
-                                Ensure that you are in a dimly lit environment. Turn off light, close binds.
-                            </Text>
-                        </View>
-                        
-                        <View style = {styles.imageContainer}>
-                            <Image 
-                                style = {styles.image} 
-                                source = {require('../assets/images/demo.png')}
-                            />
-                        </View>
-                        <View style = {styles.buttonContainer}>
-                            <Button  style = {styles.button} block rounded large onPress = {() => navigate('SliderPage')}>
-                                <Text>
-                                    Next
-                                </Text>
-                            </Button>
-                        </View> 
-                    </View>
-                </Content>
-                
-            </Container>
+          <Container >
+              <Content contentContainerStyle={styles.container}>
+                  <Header>
+                      <Title> Step 1 </Title>
+                  </Header>
+                  <View style = {styles.progBar}>
+                      <ProgressBar progress={0.33} color={Colors.red800} />
+                  </View>
+                  <View style = {styles.component}>
+                      <View style = {styles.textContainer}>
+                          <Text style = {styles.text}>
+                              Ensure that you are in a dimly lit environment. Turn off lights, close blinds.
+                          </Text>
+                      </View>
+                      <View style = {styles.imageContainer}>
+                          <Image
+                            style = {styles.image}
+                            source = {require('../assets/images/lights-off.png')}
+                          />
+                      </View>
+                      <View style = {styles.buttonContainer}>
+                          <Button  style = {styles.button} block rounded large onPress = {() => navigate('ScanInstru1')}>
+                              <Text>
+                                  Next
+                              </Text>
+                          </Button>
+                      </View>
+                  </View>
+              </Content>
+
+          </Container>
         )
     }
 
@@ -80,21 +75,21 @@ const styles = StyleSheet.create({
         marginBottom: 3
     },
     textContainer:{
-        height: 80,
+        height: 50,
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        backgroundColor: 'rgba(35, 35, 35, 0.3)'
+        backgroundColor: '#fff'
     },
     text:{
-        fontWeight: 'bold', 
-        color: '#fff',
-        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#000',
+        fontSize: 16,
         textAlign: 'center'
     },
     image :{
-        width: 350,
-        height: 150,
+        width: 250,
+        height: 250,
         alignSelf: 'center'
     },
     imageContainer:{
@@ -102,7 +97,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        backgroundColor: 'rgba(191,85,236,1)',
+        backgroundColor: '#fff',
     }
 })
-

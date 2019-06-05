@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, Slider } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Camera, BarCodeScanner, Permissions } from 'expo';
-import { Spinner,Container, Header, Left, Body, Right, Title } from 'native-base';
+import { Spinner,Container, Header, Left, Body, Right, Title, Content } from 'native-base';
 
 const ButtonIcon = ({ name }) => {
     return (
@@ -52,7 +52,7 @@ export default class SliderPage extends React.Component {
         setTimeout(
             this.setState({
                 timer: true
-            }), 5000
+            }), 9000
         );
     }
 
@@ -111,6 +111,7 @@ export default class SliderPage extends React.Component {
         });
     };
 
+
     StartScan = () => {
         this.setState({
             mode: "scan mode"
@@ -146,22 +147,16 @@ export default class SliderPage extends React.Component {
             return (
 
                 <View style={styles.container}>
+
                     <Header>
 
                         <Body>
                         <Title>{this.state.mode}</Title>
                         </Body>
-                        <Right>
-                            <Button hasText transparent
-                                    onPress={() => this.StartScan()}
-                                    onPress={() => this.changeTimer()}
-                                    onPress={() => navigate('PresentPage', {
-                                        timer : this.state.timer
-                                      })}>                        
-                                <Text>Start Scan</Text>
-                            </Button>
-                        </Right>
+
                     </Header>
+
+
 
 
                     <Image style={styles.imagePreview}
@@ -185,9 +180,13 @@ export default class SliderPage extends React.Component {
                                     title=""
                                     onPress={() => this.onButtonPress('exposure')}
                                     type="clear" />
-                            <Button icon={<ButtonIcon name="zoom-out-map" />}
-                                    title=""
-                                    onPress={() => this.onButtonPress('zoom')}
+                            <Button icon={<ButtonIcon/>}
+                                    title="start"
+                                    onPress={() => this.StartScan()}
+                                    onPress={() => this.changeTimer()}
+                                    onPress={() => navigate('PresentPage', {
+                                        timer : this.state.timer
+                                    })}
                                     type="clear" />
             
                         </View>
